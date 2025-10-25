@@ -1,1 +1,11 @@
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Auto-format staged files
+prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+
+# Update Git staging area after formatting
+git update-index --again
+
 pnpm test
