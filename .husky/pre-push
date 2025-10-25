@@ -1,0 +1,19 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 1️⃣ Format staged files (optional)
+prettier $(git diff --cached --name-only --diff-filter=ACMR | grep -v 'node_modules' | sed 's| |\\ |g') --write --ignore-unknown
+
+# 2️⃣ Update Git staging area after formatting (optional)
+git update-index --again
+
+# 3️⃣ Run tests before push
+pnpm test
+
+# 4️⃣ Exit if tests fail
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Push aborted!"
+  exit 1
+fi
+
+echo "✅ Pre-push checks passed. Proceeding with push."
