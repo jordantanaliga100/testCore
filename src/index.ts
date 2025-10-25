@@ -5,3 +5,7 @@ export function sum(num1: number, num2: number) {
 }
 
 sum(1, 2);
+
+export function compilesAndroidCode() {
+    throw new Error('You are using the wrong JDK');
+}
