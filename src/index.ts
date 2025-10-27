@@ -1,11 +1,11 @@
-console.log(`Alive 🚀`);
+import './ts/async'
+import './ts/sync'
 
-export function sum(num1: number, num2: number) {
-    return num1 + num2;
-}
+import { fetchData } from './ts/async'
+import { sum } from './ts/sync'
 
-sum(1, 2);
+console.log(sum(5, 7))
+// compilesAndroidCode();
+fetchData(String(1))
 
-export function compilesAndroidCode() {
-    throw new Error('You are using the wrong JDK');
-}
+console.log(`Alive 🚀`)
